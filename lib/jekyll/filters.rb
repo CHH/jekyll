@@ -166,8 +166,10 @@ module Jekyll
     #
     # Returns the filtered array of objects
     def where(input, key, value)
-      input.select { |object| object[key] == value }
       return input unless input.is_a?(Array)
+      input.select do |object|
+        item_property(object, key).eql?(value)
+      end
     end
 
     # Group an array of items by a property
